@@ -1,0 +1,111 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyfreak"
+dynamic = ["version"]
+description = "Parallel Yielding Functional Regularized Element-wise Array Kernels"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "LGPL-3.0-or-later" }
+authors = [{ name = "Diego-Sealtiel Valderrama", email = "sealtielfreak@yandex.com" }]
+keywords = [
+    "parallel",
+    "pipeline",
+    "applicative",
+    "numba",
+    "numpy",
+    "jit",
+    "ring-buffer",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Utilities",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development :: Compilers",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Distributed Computing",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dependencies = [
+    "numpy>=1.21",
+    "numba>=0.57",
+]
+[project.optional-dependencies]
+dev = [
+    "black>=24.0",
+    "ruff>=0.5.0",
+    "mypy>=1.10",
+    "pytest>=7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/sealtielfreak/pyfreak"
+Repository = "https://github.com/sealtielfreak/pyfreak"
+Issues = "https://github.com/sealtielfreak/pyfreak/issues"
+
+[tool.setuptools.packages.find]
+where = ["pyfreak"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311", "py312", "py313"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+src = ["pyfreak"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "I",
+    "N",
+    "UP",
+    "B",
+    "C4",
+    "SIM",
+    "RUF",
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["pyfreak"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.9"
+files = ["pyfreak"]
+disallow_untyped_defs = true
+warn_unreachable = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = ["numba.*"]
+ignore_missing_imports = true
